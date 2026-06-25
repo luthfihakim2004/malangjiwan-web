@@ -1,0 +1,7 @@
+Backend: Laravel
+Database: PostgreSQL
+Admin panel: Filament
+Frontend: Blade + Tailwind / Livewire
+Maps: Leaflet + OpenStreetMap
+Hosting: VPS / shared VPS / village server later
+Backup: scheduled pg_dump
