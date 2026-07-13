@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Wisata extends Model
 {
@@ -10,13 +12,10 @@ class Wisata extends Model
         'nama',
         'slug',
         'deskripsi',
-        'kategori',
         'alamat',
         'latitude',
         'longitude',
         'jam_operasional',
-        'kontak',
-        'image',
         'featured',
         'publish',
     ];
@@ -26,4 +25,31 @@ class Wisata extends Model
         'latitude'  => 'decimal:7',
         'longitude' => 'decimal:7',
     ];
+
+    protected function coverImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->media()->orderBy('sort_order')->value('path'),
+        );
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('publish', true);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function contacts(): MorphMany
+    {
+        return $this->morphMany(Contact::class, 'contactable');
+    }
+
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable')->orderBy('sort_order');
+    }
 }

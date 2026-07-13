@@ -1,9 +1,51 @@
 @import 'tailwindcss';
-
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
+    /* Type */
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+    /* Color — grounded in Malangjiwan's landscape: sawah (paddy) greens,
+       bata merah (roof tile/brick) terracotta, rice-paper background */
+    --color-paper: #FAF6EE;
+    --color-paper-dim: #F2EDE0;
+    --color-ink: #232F21;
+    --color-sawah-deep: #2B3A28;
+    --color-sawah: #3D5A40;
+    --color-sawah-light: #8A9B6E;
+    --color-bata: #C9602C;
+    --color-bata-dim: #B85525;
+    --color-bamboo: #E8DCC4;
+    --color-bamboo-dark: #D8C9A8;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-paper);
+        color: var(--color-ink);
+    }
+}
+
+@layer components {
+    .eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-bata-dim);
+    }
+
+    .prose-village {
+        font-family: var(--font-sans);
+        line-height: 1.75;
+        color: var(--color-ink);
+    }
+
+    .prose-village p + p {
+        margin-top: 1rem;
+    }
 }

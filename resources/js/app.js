@@ -1,1 +1,2 @@
 //
+import './village-map';
