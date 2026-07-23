@@ -15,6 +15,10 @@ class Wisata extends Model
         'alamat',
         'latitude',
         'longitude',
+        'main_route_lat',
+        'main_route_long',
+        'alt_route_lat',
+        'alt_route_long',
         'jam_operasional',
         'featured',
         'publish',
@@ -24,6 +28,10 @@ class Wisata extends Model
         'publish'   => 'boolean',
         'latitude'  => 'decimal:7',
         'longitude' => 'decimal:7',
+        'main_route_lat'  => 'decimal:7',
+        'main_route_long' => 'decimal:7',
+        'alt_route_lat'   => 'decimal:7',
+        'alt_route_long'  => 'decimal:7',
     ];
 
     protected function coverImage(): Attribute
@@ -51,5 +59,60 @@ class Wisata extends Model
     public function media(): MorphMany
     {
         return $this->morphMany(Media::class, 'mediable')->orderBy('sort_order');
+    }
+
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(Post::class, 'postable')
+                    ->where('publish', true)
+                    ->latest('published_at');
+    }
+
+    public function getMainRouteUrlAttribute(): ?string
+    {
+        if ($this->latitude === null || $this->longitude === null) {
+            return null;
+        }
+
+        $parameters = [
+            'api' => 1,
+            'destination' => "{$this->latitude},{$this->longitude}",
+            'travelmode' => 'driving',
+        ];
+
+        if (
+            $this->main_route_lat !== null &&
+            $this->main_route_long !== null
+        ) {
+            $parameters['waypoints'] =
+                "{$this->main_route_lat},{$this->main_route_long}";
+        }
+
+        return 'https://www.google.com/maps/dir/?'
+            . http_build_query($parameters);
+    }
+
+    public function getAltRouteUrlAttribute(): ?string
+    {
+        if ($this->latitude === null || $this->longitude === null) {
+            return null;
+        }
+
+        $parameters = [
+            'api' => 1,
+            'destination' => "{$this->latitude},{$this->longitude}",
+            'travelmode' => 'driving',
+        ];
+
+        if (
+            $this->alt_route_lat !== null &&
+            $this->alt_route_long !== null
+        ) {
+            $parameters['waypoints'] =
+                "{$this->alt_route_lat},{$this->alt_route_long}";
+        }
+
+        return 'https://www.google.com/maps/dir/?'
+            . http_build_query($parameters);
     }
 }

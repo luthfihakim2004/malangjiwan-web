@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -164,6 +161,28 @@ class PostResource extends Resource
                             ->seconds(false),
                     ])
                     ->columns(2),
+
+                Forms\Components\Select::make('postable_type')
+                    ->label('Tautkan ke')
+                    ->options([
+                        'wisata'    => 'Wisata',
+                        'umkm'      => 'UMKM',
+                    ])
+                    ->live()
+                    ->nullable()
+                    ->placeholder('Tidak ditautkan'),
+
+                Forms\Components\Select::make('postable_id')
+                    ->label('Pilih UMKM / Wisata')
+                    ->options(function (Forms\Get $get) {
+                        return match($get('postable_type')) {
+                            'wisata' => \App\Models\Wisata::where('publish', true)->pluck('nama', 'id'),
+                            'umkm'  => \App\Models\Umkm::where('publish', true)->pluck('nama', 'id'),
+                            default => [],
+                        };
+                    })
+                    ->nullable()
+                    ->hidden(fn (Forms\Get $get) => blank($get('postable_type'))),
             ]);
     }
 

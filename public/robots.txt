@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Disallow: /admin
+Disallow: /livewire/
+Disallow: /storage/logs/
+Disallow: /scheme
+
+Sitemap: https://preview.vidflh.my.id/sitemap.xml

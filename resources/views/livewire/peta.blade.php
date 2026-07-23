@@ -1,3 +1,5 @@
+@section('title', 'Peta Desa Malangjiwan, Klaten')
+
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="mb-8">
         <p class="eyebrow mb-1">Sebaran Lokasi</p>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda — Desa Malangjiwan')
-@section('meta_description', 'Selamat datang di portal resmi Desa Malangjiwan. Temukan destinasi wisata, UMKM lokal, dan berita terkini dari desa kami.')
+@section('title', 'Desa Malangjiwan — Wisata, UMKM, dan Informasi Desa')
+@section('meta_description', 'Selamat datang di portal resmi Desa Malangjiwan. Temukan destinasi wisata, UMKM lokal, dan berita terkini dari jantung desa kami.')
 
 @section('content')
 
@@ -26,9 +26,10 @@
         <div class="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <p class="eyebrow text-white/60 mb-3">Desa Malangjiwan, Kec. Kebonarum, Kab. Klaten, Jawa Tengah</p>
             <h1 class="font-display text-4xl sm:text-5xl font-semibold text-white leading-tight max-w-2xl">
-                Selamat datang di Desa Malangjiwan
+                Selamat datang<br>
+                di Desa Malangjiwan
             </h1>
-            <p class="mt-4 text-white/70 leading-relaxed max-w-lg">
+            <p class="mt-4 text-white/70 leading-relaxed">
                 Temukan wisata, produk UMKM unggulan, dan informasi terkini dari jantung desa kami.
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
@@ -38,7 +39,7 @@
                 </a>
                 <a href="{{ route('umkm.index') }}"
                    class="px-5 py-2.5 rounded-full border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors">
-                    Direktori UMKM
+                    Daftar UMKM
                 </a>
             </div>
         </div>

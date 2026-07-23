@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Destinasi Wisata — Malangjiwan')
+@section('title', 'Wisata Desa Malangjiwan, Klaten')
 @section('meta_description', 'Jelajahi destinasi wisata unggulan di Desa Malangjiwan.')
 
 @section('content')

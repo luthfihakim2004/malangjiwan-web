@@ -53,4 +53,11 @@ class Umkm extends Model
     {
         return $this->morphMany(Media::class, 'mediable')->orderBy('sort_order');
     }
+
+    public function posts(): MorphMany
+    {
+        return $this->morphMany(Post::class, 'postable')
+                    ->where('publish', true)
+                    ->latest('published_at');
+    }
 }

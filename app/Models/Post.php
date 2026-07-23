@@ -17,7 +17,9 @@ class Post extends Model
         'excerpt',
         'body',
         'publish',
-        'published_at'
+        'published_at',
+        'postable_id',
+        'postable_type'
     ];
     protected $casts = [
         'publish'       => 'boolean',
@@ -62,5 +64,10 @@ class Post extends Model
     public function media(): MorphMany
     {
         return $this->morphMany(Media::class, 'mediable')->orderBy('sort_order');
+    }
+
+    public function postable()
+    {
+        return $this->morphTo();
     }
 }

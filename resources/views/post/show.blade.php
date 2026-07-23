@@ -1,7 +1,36 @@
 @extends('layouts.app')
 
-@section('title', $post->judul . ' — Malangjiwan')
-@section('meta_description', $post->excerpt ?? Str::limit(strip_tags($post->body), 160))
+@section('title', $post->judul . ' — Desa Malangjiwan')
+@section('meta_description', $post->excerpt ?: Str::limit(strip_tags($post->body), 155, ''))
+@section('canonical', route('post.show', $post->slug))
+@section('og_type', 'article')
+@section('og_image', $post->seo_image_url)
+
+@php
+    $articleSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        'headline' => $post->judul,
+        'description' => $post->excerpt
+            ?: Str::limit(strip_tags($post->body), 200, ''),
+        'image' => [$post->seo_image_url],
+        'datePublished' => $post->published_at?->toIso8601String(),
+        'dateModified' => $post->updated_at?->toIso8601String(),
+        'mainEntityOfPage' => route('post.show', $post->slug),
+        'author' => [
+            '@type' => 'Organization',
+            'name' => 'Pemerintah Desa Malangjiwan',
+        ],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Pemerintah Desa Malangjiwan',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => asset('images/logo-desa.png'),
+            ],
+        ],
+    ];
+@endphp
 
 @section('content')
 <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">

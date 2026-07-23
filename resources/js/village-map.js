@@ -14,17 +14,36 @@ L.Icon.Default.mergeOptions({
 });
 
 const COLORS = {
-    wisata: '#3D5A40', // sawah green
-    umkm: '#C9602C',   // bata terracotta
+    wisata:      '#3D5A40', // sawah green
+    umkm:        '#C9602C', // bata terracotta
+    route_main:  '#C9602C', // bata — stands out against green destination pin
+    route_alt:   '#2B3A28', // amber — distinct from both
 };
 
 function coloredIcon(type) {
     const color = COLORS[type] ?? '#2B3A28';
+
+    // Route waypoints get a distinct square pin shape
+    if (type === 'route_main' || type === 'route_alt') {
+        return L.divIcon({
+            className: '',
+            html: `<span style="
+                display:block;width:14px;height:14px;border-radius:3px;
+                background:${color};border:2px solid #FAF6EE;
+                box-shadow:0 1px 3px rgba(0,0,0,.4);
+                transform:rotate(45deg);
+            "></span>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7],
+            popupAnchor: [0, -10],
+        });
+    }
+
     return L.divIcon({
         className: '',
         html: `<span style="
-            display:block;width:14px;height:14px;border-radius:50%;
-            background:${color};border:2px solid #FAF6EE;
+            display:block;width:20px;height:20px;border-radius:50%;
+            background:${color};border:3px solid #FAF6EE;
             box-shadow:0 1px 3px rgba(0,0,0,.4);
         "></span>`,
         iconSize: [14, 14],
@@ -62,29 +81,86 @@ export function initVillageMap(el) {
         maxZoom: 19,
     }).addTo(map);
 
-    const layerGroups = { wisata: L.layerGroup(), umkm: L.layerGroup() };
+    const layerGroups = {
+        wisata:     L.layerGroup(),
+        umkm:       L.layerGroup(),
+        route_main: L.layerGroup(),
+        route_alt:  L.layerGroup(),
+    };
 
     markers.forEach((m) => {
         if (typeof m.lat !== 'number' || typeof m.lng !== 'number') return;
 
-        const marker = L.marker([m.lat, m.lng], { icon: coloredIcon(m.type) });
+        const marker = L.marker([m.lat, m.lng], {
+            icon: coloredIcon(m.type),
+        });
 
-        const popupHtml = `
+        const popupLinkText = {
+            wisata: 'Info lengkap →',
+            umkm: 'Info lengkap →',
+            route_main: 'Buka di Google Maps →',
+            route_alt: 'Buka di Google Maps →',
+        };
+
+        const typeLabel = {
+            wisata: 'Wisata',
+            umkm: 'UMKM',
+            route_main: 'Titik Masuk Utama',
+            route_alt: 'Rute Alternatif',
+        }[m.type] ?? m.type;
+
+        marker.bindPopup(`
             <div style="font-family:var(--font-sans, sans-serif); min-width:160px;">
-                <p style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:${COLORS[m.type] ?? '#2B3A28'};margin:0 0 2px;">
-                    ${m.type === 'umkm' ? 'UMKM' : 'Wisata'}${m.kategori ? ' · ' + m.kategori : ''}
+                <p style="
+                    font-size:11px;
+                    font-weight:600;
+                    letter-spacing:.08em;
+                    text-transform:uppercase;
+                    color:${COLORS[m.type] ?? '#2B3A28'};
+                    margin:0 0 2px;
+                ">
+                    ${typeLabel}${m.kategori ? ' · ' + m.kategori : ''}
                 </p>
-                <p style="font-weight:600;margin:0 0 4px;color:#232F21;">${m.nama}</p>
-                ${m.url ? `<a href="${m.url}" style="font-size:13px;color:#3D5A40;text-decoration:underline;">Lihat detail &rarr;</a>` : ''}
+
+                <p style="
+                    font-weight:600;
+                    margin:0 0 4px;
+                    color:#232F21;
+                ">
+                    ${m.nama ?? m.name ?? 'Lokasi'}
+                </p>
+
+                ${
+                    m.description
+                        ? `<p style="margin:0 0 8px;font-size:13px;color:#555;">${m.description}</p>`
+                        : ''
+                }
+
+                ${
+                    m.url
+                        ? `
+                            <a
+                                href="${m.url}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style="font-size:13px;color:#3D5A40;text-decoration:underline;"
+                            >
+                                ${popupLinkText[m.type] ?? 'Lihat →'}
+                            </a>
+                        `
+                        : ''
+                }
             </div>
-        `;
-        marker.bindPopup(popupHtml);
+        `);
 
         (layerGroups[m.type] ?? layerGroups.wisata).addLayer(marker);
     });
 
     layerGroups.wisata.addTo(map);
     layerGroups.umkm.addTo(map);
+    layerGroups.route_main.addTo(map);
+    layerGroups.route_alt.addTo(map);
+
 
     // Draw village boundary
     fetch('/maps/malangjiwan.geojson')

@@ -17,6 +17,10 @@ return new class extends Migration
 
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
+            $table->decimal('main_route_lat', 10, 7)->nullable();
+            $table->decimal('main_route_long', 10, 7)->nullable();
+            $table->decimal('alt_route_lat', 10, 7)->nullable();
+            $table->decimal('alt_route_long', 10, 7)->nullable();
 
             $table->string('jam_operasional')->nullable();
 

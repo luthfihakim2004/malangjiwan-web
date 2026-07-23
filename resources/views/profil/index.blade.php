@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profil Desa — ' . $profil->nama_desa)
+@section('title', 'Profil Desa Malangjiwan, Kebonarum, Klaten')
 @section('meta_description', 'Sejarah, visi, misi, dan informasi resmi ' . $profil->nama_desa . ', Kecamatan Kebonarum, Kabupaten Klaten, Jawa Tengah.')
 
 @section('content')

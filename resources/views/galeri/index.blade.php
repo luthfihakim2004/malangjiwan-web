@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Galeri Foto — Malangjiwan')
+@section('title', 'Galeri Desa Malangjiwan')
 @section('meta_description', 'Galeri foto wisata, UMKM, dan kegiatan Desa Malangjiwan.')
+@section('canonical', route('galeri.index'))
 
 @section('content')
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">

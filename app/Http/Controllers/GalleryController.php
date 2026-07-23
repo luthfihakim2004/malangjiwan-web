@@ -15,9 +15,9 @@ class GalleryController extends Controller
         $tipe = $request->query('tipe');
 
         $morphMap = [
-            'wisata' => Wisata::class,
-            'umkm' => Umkm::class,
-            'post' => Post::class,
+            'wisata'    => 'wisata',
+            'umkm'      => 'umkm',
+            'post'      => 'post',
         ];
 
         $media = Media::with('mediable')
@@ -33,15 +33,15 @@ class GalleryController extends Controller
 
                 $query
                     ->orWhere(fn ($q) =>
-                        $q->where('mediable_type', Wisata::class)
+                        $q->where('mediable_type', 'wisata')
                             ->whereHasMorph('mediable', [Wisata::class], fn ($q) => $q->published())
                     )
                     ->orWhere(fn ($q) =>
-                        $q->where('mediable_type', Umkm::class)
+                        $q->where('mediable_type', 'umkm')
                             ->whereHasMorph('mediable', [Umkm::class], fn ($q) => $q->published())
                     )
                     ->orWhere(fn ($q) =>
-                        $q->where('mediable_type', Post::class)
+                        $q->where('mediable_type', 'post')
                             ->whereHasMorph('mediable', [Post::class], fn ($q) => $q->published())
                     );
             })

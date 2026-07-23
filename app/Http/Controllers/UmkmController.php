@@ -36,7 +36,12 @@ class UmkmController extends Controller
     {
         abort_unless($umkm->publish, 404);
 
-        $umkm->load(['tags', 'contacts', 'media']);
+        $umkm->load([
+            'tags',
+            'contacts',
+            'media',
+            'posts' => fn ($q) => $q->with(['tags', 'media'])->latest('published_at'),
+        ]);
 
         return view('umkm.show', compact('umkm'));
     }

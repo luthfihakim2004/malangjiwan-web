@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    @php
+        $siteName = 'Desa Malangjiwan';
+
+        $pageTitle = trim($__env->yieldContent('title'))
+            ?: 'Desa Malangjiwan — Wisata, UMKM, dan Informasi Desa';
+
+        $pageDescription = trim($__env->yieldContent('meta_description'))
+            ?: 'Portal resmi informasi Desa Malangjiwan.';
+
+        $canonicalUrl = trim($__env->yieldContent('canonical'))
+            ?: url()->current();
+
+        $ogImage = trim($__env->yieldContent('og_image'))
+            ?: asset('images/og-default.jpg');
+
+        $ogType = trim($__env->yieldContent('og_type'))
+            ?: 'website';
+    @endphp
+
+    <title>{{ $pageTitle }}</title>
+
+    <meta name="description" content="{{ $pageDescription }}">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
+
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:locale" content="id_ID">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $pageDescription }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
+
+    @stack('structured-data')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Desa Malangjiwan')</title>
@@ -31,28 +71,84 @@
             </a>
 
             <!-- Desktop Menu -->
-            <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-ink)]">
+            <ul class="hidden md:flex items-stretch h-full text-sm font-medium text-[var(--color-ink)]">
                 <li><a href="{{ route('home') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('home') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('home')) aria-current="page" @endif>Beranda</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('home')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('home')) aria-current="page" @endif>
+                    Beranda
+                </a></li>
                 <li><a href="{{ route('post.index') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('post.*') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('post.*')) aria-current="page" @endif>Berita</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('post.*')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('post.*')) aria-current="page" @endif>
+                    Berita
+                </a></li>
                 <li><a href="{{ route('wisata.index') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('wisata.*') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('wisata.*')) aria-current="page" @endif>Wisata</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('wisata.*')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('wisata.*')) aria-current="page" @endif>
+                    Wisata
+                </a></li>
                 <li><a href="{{ route('umkm.index') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('umkm.*') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('umkm.*')) aria-current="page" @endif>UMKM</a></li>
-                <li><a href="{{ route('peta') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('peta') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('peta')) aria-current="page" @endif>Peta</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('umkm.*')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('umkm.*')) aria-current="page" @endif>
+                    UMKM
+                </a></li>
                 <li><a href="{{ route('galeri.index') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('galeri.*') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('galeri.*')) aria-current="page" @endif>Galeri</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('galeri.*')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('galeri.*')) aria-current="page" @endif>
+                    Galeri
+                </a></li>
+                <li><a href="{{ route('peta') }}"
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('peta')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('peta')) aria-current="page" @endif>
+                    Peta
+                </a></li>
                 <li><a href="{{ route('profil') }}"
-                       class="hover:text-[var(--color-bata)] transition-colors {{ request()->routeIs('profil') ? 'text-[var(--color-bata)]' : '' }}"
-                       @if(request()->routeIs('profil')) aria-current="page" @endif>Profil Desa</a></li>
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('profil')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('profil')) aria-current="page" @endif>
+                    Profil Desa
+                </a></li>
             </ul>
 
             <!-- Mobile Menu Button -->
@@ -70,20 +166,53 @@
         </nav>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu"
-             x-show="mobileOpen"
-             x-transition
-             class="md:hidden border-t border-[var(--color-bamboo)] bg-[var(--color-paper)]">
-            <div class="px-4 py-4 space-y-1">
-                <a href="{{ route('home') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Beranda</a>
-                <a href="{{ route('post.index') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Berita</a>
-                <a href="{{ route('wisata.index') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Wisata</a>
-                <a href="{{ route('umkm.index') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">UMKM</a>
-                <a href="{{ route('peta') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Peta</a>
-                <a href="{{ route('galeri.index') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Galeri</a>
-                <a href="{{ route('profil') }}" @click="mobileOpen = false" class="block py-3 px-4 text-base font-medium hover:bg-[var(--color-bamboo)]/10 rounded-lg">Profil Desa</a>
-            </div>
-        </div>
+<!-- Mobile Menu -->
+<div id="mobile-menu"
+     x-show="mobileOpen"
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0 -translate-y-4"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     class="md:hidden fixed left-0 right-0 top-16 bg-[var(--color-paper)] border-b border-[var(--color-bamboo)] shadow-xl z-50 overflow-y-auto"
+     style="max-height: calc(100vh - 4rem);">
+
+    <div class="px-4 py-6 space-y-1">
+        <a href="{{ route('home') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Beranda
+        </a>
+        <a href="{{ route('post.index') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Berita
+        </a>
+        <a href="{{ route('wisata.index') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Wisata
+        </a>
+        <a href="{{ route('umkm.index') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            UMKM
+        </a>
+        <a href="{{ route('galeri.index') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Galeri
+        </a>
+        <a href="{{ route('peta') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Peta
+        </a>
+        <a href="{{ route('profil') }}"
+           @click="mobileOpen = false"
+           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+            Profil Desa
+        </a>
+    </div>
+</div>
     </header>
 
     <main id="main-content">
@@ -108,7 +237,7 @@
                 <p class="eyebrow mb-3">Tautan Cepat</p>
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('post.index') }}" class="hover:text-[var(--color-bata)]">Berita Desa</a></li>
-                    <li><a href="{{ route('umkm.index') }}" class="hover:text-[var(--color-bata)]">Direktori UMKM</a></li>
+                    <li><a href="{{ route('umkm.index') }}" class="hover:text-[var(--color-bata)]">Daftar UMKM</a></li>
                     <li><a href="{{ route('wisata.index') }}" class="hover:text-[var(--color-bata)]">Destinasi Wisata</a></li>
                 </ul>
             </div>
@@ -116,7 +245,7 @@
             <!-- Dynamic Contacts -->
             {{-- Dynamic Contacts --}}
             <div>
-                <p class="eyebrow mb-3">Kontak Kami</p>
+                <p class="eyebrow mb-3">Hubungi Kami</p>
 
                 @php
                     $footerProfile = \App\Models\Profile::with('contacts')->first();

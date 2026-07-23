@@ -1,7 +1,53 @@
 @extends('layouts.app')
 
-@section('title', $umkm->nama . ' — UMKM Malangjiwan')
-@section('meta_description', Str::limit($umkm->deskripsi, 160))
+@section('title', $umkm->nama . ' — UMKM Desa Malangjiwan')
+@section('meta_description', Str::limit("Temukan informasi {$umkm->nama}, produk dan UMKM lokal dari Desa Malangjiwan, Klaten. " . strip_tags($umkm->deskripsi), 160, ''))
+@section('canonical', route('umkm.show', $umkm->slug))
+@section('og_image', $umkm->seo_image_url)
+
+@php
+    $umkmSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'LocalBusiness',
+        'name' => $umkm->nama,
+        'description' => Str::limit(
+            strip_tags($umkm->deskripsi),
+            300,
+            ''
+        ),
+        'url' => route('umkm.show', $umkm->slug),
+        'image' => [$umkm->seo_image_url],
+    ];
+
+    if ($umkm->alamat) {
+        $umkmSchema['address'] = [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $umkm->alamat,
+            'addressLocality' => 'Malangjiwan',
+            'addressRegion' => 'Jawa Tengah',
+            'addressCountry' => 'ID',
+        ];
+    }
+
+    if ($umkm->latitude && $umkm->longitude) {
+        $umkmSchema['geo'] = [
+            '@type' => 'GeoCoordinates',
+            'latitude' => (float) $umkm->latitude,
+            'longitude' => (float) $umkm->longitude,
+        ];
+    }
+@endphp
+
+@push('structured-data')
+<script type="application/ld+json">
+{!! json_encode(
+    $umkmSchema,
+    JSON_UNESCAPED_SLASHES
+    | JSON_UNESCAPED_UNICODE
+    | JSON_PRETTY_PRINT
+) !!}
+</script>
+@endpush
 
 @section('content')
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -14,7 +60,7 @@
         <span class="text-[var(--color-ink)]/80 line-clamp-1">{{ $umkm->nama }}</span>
     </nav>
 
-    {{-- Gallery slider — full width at top --}}
+    {{-- Gallery slider --}}
     <div class="mb-10">
         <x-gallery-slider
             :media="$umkm->media"
@@ -26,25 +72,7 @@
 
     <div class="grid lg:grid-cols-5 gap-10">
 
-        {{-- Left: map --}}
-        <div class="lg:col-span-2">
-            @if ($umkm->latitude && $umkm->longitude)
-                <x-map
-                    :markers="[[
-                        'lat'      => $umkm->latitude,
-                        'lng'      => $umkm->longitude,
-                        'nama'     => $umkm->nama,
-                        'type'     => 'umkm',
-                        'kategori' => $umkm->tags->pluck('nama')->join(', '),
-                        'url'      => null,
-                    ]]"
-                    height="300px"
-                    :zoom="16"
-                />
-            @endif
-        </div>
-
-        {{-- Right: info --}}
+        {{-- Left: info --}}
         <div class="lg:col-span-3">
 
             @if ($umkm->tags->isNotEmpty())
@@ -97,10 +125,54 @@
             <div class="mt-10 pt-8 border-t border-[var(--color-bamboo)]">
                 <a href="{{ route('umkm.index') }}"
                    class="text-sm font-medium text-[var(--color-sawah)] hover:text-[var(--color-bata)] transition-colors">
-                    &larr; Kembali ke Direktori UMKM
+                    &larr; Kembali ke Daftar UMKM
                 </a>
             </div>
         </div>
+
+        {{-- Right: map --}}
+        <div class="lg:col-span-2">
+            @if ($umkm->latitude && $umkm->longitude)
+                <x-map
+                    :markers="[[
+                        'lat'      => $umkm->latitude,
+                        'lng'      => $umkm->longitude,
+                        'nama'     => $umkm->nama,
+                        'type'     => 'umkm',
+                        'kategori' => $umkm->tags->pluck('nama')->join(', '),
+                        'url'      => null,
+                    ]]"
+                    height="400px"
+                    :zoom="16"
+                />
+            @endif
+        </div>
+
     </div>
+
+    {{-- ── Related posts ── --}}
+    @if ($umkm->posts->isNotEmpty())
+        <div class="mt-16 pt-12 border-t border-[var(--color-bamboo)]">
+            <x-section-heading
+                eyebrow="Informasi Terkait"
+                title="Berita tentang {{ $umkm->nama }}"
+                :href="route('post.index')"
+                linkLabel="Semua berita"
+            />
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($umkm->posts as $post)
+                    <x-card
+                        :href="route('post.show', $post->slug)"
+                        :image="$post->media->first()?->path ?? $post->image"
+                        :eyebrow="$post->tags->isNotEmpty() ? $post->tags->first()->nama : 'Berita'"
+                        :title="$post->judul"
+                        :excerpt="$post->excerpt"
+                        :meta="$post->published_at?->translatedFormat('d F Y')"
+                    />
+                @endforeach
+            </div>
+        </div>
+    @endif
+
 </div>
 @endsection

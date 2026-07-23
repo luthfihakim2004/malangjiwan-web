@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Berita Desa — Malangjiwan')
+@section('title', 'Berita dan Informasi Desa Malangjiwan')
 @section('meta_description', 'Informasi dan berita terkini dari Desa Malangjiwan.')
 
 @section('content')

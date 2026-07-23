@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Direktori UMKM — Malangjiwan')
+@section('title', 'UMKM Desa Malangjiwan — Produk dan Usaha Lokal')
 @section('meta_description', 'Temukan produk dan usaha lokal dari UMKM Desa Malangjiwan.')
 
 @section('content')
@@ -8,7 +8,7 @@
 
     <div class="mb-10">
         <p class="eyebrow mb-1">Produk Lokal</p>
-        <h1 class="font-display text-3xl sm:text-4xl font-semibold text-[var(--color-sawah-deep)]">Direktori UMKM</h1>
+        <h1 class="font-display text-3xl sm:text-4xl font-semibold text-[var(--color-sawah-deep)]">Daftar UMKM</h1>
         <p class="mt-2 text-[var(--color-ink)]/60 max-w-lg">Dukung produk dan usaha warga Desa Malangjiwan.</p>
     </div>
 

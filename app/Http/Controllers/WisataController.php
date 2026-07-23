@@ -36,7 +36,12 @@ class WisataController extends Controller
     {
         abort_unless($wisata->publish, 404);
 
-        $wisata->load(['tags', 'contacts', 'media']);
+        $wisata->load([
+            'tags',
+            'contacts',
+            'media',
+            'posts' => fn ($q) => $q->with(['tags', 'media'])->latest('published_at'),
+        ]);
 
         return view('wisata.show', compact('wisata'));
     }
