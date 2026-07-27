@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Wisata extends Model
@@ -66,6 +67,13 @@ class Wisata extends Model
         return $this->morphMany(Post::class, 'postable')
                     ->where('publish', true)
                     ->latest('published_at');
+    }
+
+    public function vegetasi(): HasMany
+    {
+        return $this->hasMany(VegetasiSpecies::class, 'wisata_id')
+                    ->where('publish', true)
+                    ->orderBy('nama_lokal');
     }
 
     public function getMainRouteUrlAttribute(): ?string

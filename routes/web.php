@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UmkmController;
+use App\Http\Controllers\VegetasiController;
 use App\Http\Controllers\WisataController;
 use App\Livewire\Peta;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,8 @@ Route::get('/post', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
+
+Route::get('/vegetasi', [VegetasiController::class, 'index'])->name('vegetasi.index');
+Route::get('/vegetasi/{vegetationSpecies:slug}', [VegetasiController::class, 'show'])->name('vegetasi.show');
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');

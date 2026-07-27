@@ -40,6 +40,7 @@ class WisataController extends Controller
             'tags',
             'contacts',
             'media',
+            'vegetasi',
             'posts' => fn ($q) => $q->with(['tags', 'media'])->latest('published_at'),
         ]);
 

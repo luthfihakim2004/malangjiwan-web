@@ -279,5 +279,42 @@
         </div>
     @endif
 
+    {{-- Related vegetation --}}
+    @if ($wisata->vegetasi->isNotEmpty())
+        <div class="mt-16 pt-12 border-t border-[var(--color-bamboo)]">
+            <x-section-heading
+                eyebrow="Inventaris Vegetasi"
+                title="Tumbuhan di {{ $wisata->nama }}"
+                :href="route('vegetasi.index')"
+                linkLabel="Semua vegetasi"
+            />
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach ($wisata->vegetasi as $sp)
+                    <a href="{{ route('vegetasi.show', $sp->slug) }}"
+                       class="group flex items-center gap-4 p-4 rounded-xl border border-[var(--color-bamboo)] hover:border-[var(--color-sawah-light)] bg-[var(--color-paper)] transition-all">
+                        <div class="shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-[var(--color-bamboo)]">
+                            @if ($sp->image)
+                                <img src="{{ asset('storage/' . $sp->image) }}"
+                                     alt="{{ $sp->nama_lokal }}"
+                                     class="w-full h-full object-cover">
+                            @endif
+                        </div>
+                        <div class="min-w-0">
+                            <p class="font-medium text-sm text-[var(--color-sawah-deep)] group-hover:text-[var(--color-sawah)] transition-colors">
+                                {{ $sp->nama_lokal }}
+                            </p>
+                            @if ($sp->nama_ilmiah)
+                                <p class="text-xs italic text-[var(--color-ink)]/50 truncate">{{ $sp->nama_ilmiah }}</p>
+                            @endif
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 ml-auto text-[var(--color-ink)]/30 group-hover:text-[var(--color-sawah)] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
 </div>
 @endsection

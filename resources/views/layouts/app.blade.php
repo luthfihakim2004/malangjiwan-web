@@ -116,6 +116,17 @@
                    @if(request()->routeIs('umkm.*')) aria-current="page" @endif>
                     UMKM
                 </a></li>
+                <li><a href="{{ route('vegetasi.index') }}"
+                   class="flex items-center h-full px-4 transition-colors
+                        hover:bg-[var(--color-bamboo-dark)]
+                        hover:text-[var(--color-sawah-deep)]
+                        focus:outline-none
+                        {{ request()->routeIs('vegetasi.*')
+                            ? 'text-[var(--color-bata)]'
+                            : '' }}"
+                   @if(request()->routeIs('vegetasi.*')) aria-current="page" @endif>
+                    Vegetasi
+                </a></li>
                 <li><a href="{{ route('galeri.index') }}"
                    class="flex items-center h-full px-4 transition-colors
                         hover:bg-[var(--color-bamboo-dark)]
