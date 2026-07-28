@@ -1,8 +1,6 @@
 <?php
-
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Notifications\Auth\VerifyEmail;
@@ -48,15 +46,23 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         static::created(function (User $user) {
             DB::afterCommit(function () use ($user) {
                 if (! $user->hasVerifiedEmail()) {
-                    $user->notify(new VerifyEmail());
+                    $user->sendEmailVerificationNotification();
                 }
             });
         });
     }
 
+    public function sendEmailVerificationNotification(): void
+    {
+        $notification = new VerifyEmail();
+        $notification->url = filament()->getVerifyEmailUrl($this);
+
+        $this->notify($notification);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return $panel->getId() == 'admin'
+        return $panel->getId() === 'admin'
             && $this->is_active;
     }
 }
