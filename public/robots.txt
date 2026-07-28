@@ -6,4 +6,4 @@ Disallow: /livewire/
 Disallow: /storage/logs/
 Disallow: /scheme
 
-Sitemap: https://preview.vidflh.my.id/sitemap.xml
+Sitemap: https://malangjiwan.com/sitemap.xml
