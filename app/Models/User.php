@@ -43,10 +43,12 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     protected static function booted(): void
     {
-        static::created(function (User $user): void {
-            if (! $user->hasVerifiedEmail()) {
-                $user->notify(new VerifyEmail());
-            }
+        static::created(function (User $user) {
+            $user->afterCommit(function () use ($user) {
+                if (! $user->hasVerifiedEmail()) {
+                    $user->notify(new VerifyEmail());
+                }
+            });
         });
     }
 
