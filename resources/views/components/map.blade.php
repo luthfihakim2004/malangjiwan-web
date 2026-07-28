@@ -5,7 +5,7 @@
 ])
 
 @php
-    // Defensive numeric casting — model casts return decimal strings,
+    // Defensive numeric casting - model casts return decimal strings,
     // and JSON-encoding a string lat/lng breaks Leaflet's L.marker([...]).
     $normalized = collect($markers)
         ->map(function ($m) {

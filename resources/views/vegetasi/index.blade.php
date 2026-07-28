@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Inventaris Vegetasi — Malangjiwan')
+@section('title', 'Inventaris Vegetasi - Malangjiwan')
 @section('meta_description', 'Direktori spesies tumbuhan yang ditemukan di Desa Malangjiwan.')
 
 @section('content')

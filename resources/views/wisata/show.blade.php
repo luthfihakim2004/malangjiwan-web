@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $wisata->nama . ' — Wisata Desa Malangjiwan, Klaten')
+@section('title', $wisata->nama . ' - Wisata Desa Malangjiwan, Klaten')
 @section('meta_description', Str::limit("{$wisata->nama} adalah destinasi wisata di Desa Malangjiwan, Kebonarum, Klaten. " . strip_tags($wisata->deskripsi), 155, ''))
 @section('canonical', route('wisata.show', $wisata->slug))
 @if ($wisata->cover_image)
@@ -73,7 +73,7 @@
     </div>
 
     @php
-        // Build map markers — destination pin + optional waypoint pins
+        // Build map markers - destination pin + optional waypoint pins
         $mapMarkers = [];
 
         if ($wisata->latitude && $wisata->longitude) {
@@ -91,7 +91,7 @@
             $mapMarkers[] = [
                 'lat'      => (float) $wisata->main_route_lat,
                 'lng'      => (float) $wisata->main_route_long,
-                'nama'     => 'Titik Masuk Utama — ' . $wisata->nama,
+                'nama'     => 'Titik Masuk Utama - ' . $wisata->nama,
                 'type'     => 'route_main',
                 'kategori' => null,
                 'url'      => $wisata->main_route_url,
@@ -102,7 +102,7 @@
             $mapMarkers[] = [
                 'lat'      => (float) $wisata->alt_route_lat,
                 'lng'      => (float) $wisata->alt_route_long,
-                'nama'     => 'Titik Masuk Alternatif — ' . $wisata->nama,
+                'nama'     => 'Titik Masuk Alternatif - ' . $wisata->nama,
                 'type'     => 'route_alt',
                 'kategori' => null,
                 'url'      => $wisata->alt_route_url,
@@ -162,7 +162,7 @@
                     <p class="eyebrow mb-3">Petunjuk Arah</p>
 
                     @if ($hasBothWaypoints)
-                        {{-- Both waypoints set — show two distinct buttons --}}
+                        {{-- Both waypoints set - show two distinct buttons --}}
                         <div class="flex flex-wrap gap-3">
                             <a href="{{ $wisata->main_route_url }}"
                                target="_blank"
@@ -200,7 +200,7 @@
                         </a>
 
                     @else
-                        {{-- No waypoints — direct destination link --}}
+                        {{-- No waypoints - direct destination link --}}
                         <a href="{{ $wisata->main_route_url }}"
                            target="_blank"
                            rel="noopener noreferrer"

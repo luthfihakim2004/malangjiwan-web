@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $umkm->nama . ' — UMKM Desa Malangjiwan')
+@section('title', $umkm->nama . ' - UMKM Desa Malangjiwan')
 @section('meta_description', Str::limit("Temukan informasi {$umkm->nama}, produk dan UMKM lokal dari Desa Malangjiwan, Klaten. " . strip_tags($umkm->deskripsi), 160, ''))
 @section('canonical', route('umkm.show', $umkm->slug))
 @section('og_image', $umkm->seo_image_url)

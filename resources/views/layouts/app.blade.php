@@ -5,7 +5,7 @@
         $siteName = 'Desa Malangjiwan';
 
         $pageTitle = trim($__env->yieldContent('title'))
-            ?: 'Desa Malangjiwan — Wisata, UMKM, dan Informasi Desa';
+            ?: 'Desa Malangjiwan - Wisata, UMKM, dan Informasi Desa';
 
         $pageDescription = trim($__env->yieldContent('meta_description'))
             ?: 'Portal resmi informasi Desa Malangjiwan.';
@@ -44,7 +44,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Desa Malangjiwan')</title>
-    <meta name="description" content="@yield('meta_description', 'Profil resmi Desa Malangjiwan — informasi wisata, UMKM, dan berita desa.')">
+    <meta name="description" content="@yield('meta_description', 'Profil resmi Desa Malangjiwan - informasi wisata, UMKM, dan berita desa.')">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

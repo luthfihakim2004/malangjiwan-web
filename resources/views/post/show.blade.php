@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $post->judul . ' — Desa Malangjiwan')
+@section('title', $post->judul . ' - Desa Malangjiwan')
 @section('meta_description', $post->excerpt ?: Str::limit(strip_tags($post->body), 155, ''))
 @section('canonical', route('post.show', $post->slug))
 @section('og_type', 'article')

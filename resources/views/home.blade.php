@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Desa Malangjiwan — Wisata, UMKM, dan Informasi Desa')
+@section('title', 'Desa Malangjiwan - Wisata, UMKM, dan Informasi Desa')
 @section('meta_description', 'Selamat datang di portal resmi Desa Malangjiwan. Temukan destinasi wisata, UMKM lokal, dan berita terkini dari jantung desa kami.')
 
 @section('content')
@@ -19,10 +19,10 @@
             <div class="absolute inset-0 bg-[var(--color-sawah-deep)]"></div>
         @endif
 
-        {{-- Gradient overlay — dark at bottom where text sits, subtle at top --}}
+        {{-- Gradient overlay - dark at bottom where text sits, subtle at top --}}
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
 
-        {{-- Content — sits at the bottom of the image --}}
+        {{-- Content - sits at the bottom of the image --}}
         <div class="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
             <p class="eyebrow text-white/60 mb-3">Desa Malangjiwan, Kec. Kebonarum, Kab. Klaten, Jawa Tengah</p>
             <h1 class="font-display text-4xl sm:text-5xl font-semibold text-white leading-tight max-w-2xl">
@@ -121,7 +121,7 @@
     @endif
 
     {{-- ============================================================
-         CTA STRIP — link to combined map
+         CTA STRIP - link to combined map
     ============================================================ --}}
     <section class="mt-20 bg-[var(--color-paper-dim)] border-y border-[var(--color-bamboo)]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6">

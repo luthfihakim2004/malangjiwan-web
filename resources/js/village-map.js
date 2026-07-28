@@ -16,8 +16,8 @@ L.Icon.Default.mergeOptions({
 const COLORS = {
     wisata:      '#3D5A40', // sawah green
     umkm:        '#C9602C', // bata terracotta
-    route_main:  '#C9602C', // bata — stands out against green destination pin
-    route_alt:   '#2B3A28', // amber — distinct from both
+    route_main:  '#C9602C', // bata - stands out against green destination pin
+    route_alt:   '#2B3A28', // amber - distinct from both
 };
 
 function coloredIcon(type) {
@@ -168,24 +168,24 @@ export function initVillageMap(el) {
         .then(data => {
             const boundary = L.geoJSON(data, {
                 style: {
-                    color: '#3D5A40',       // sawah green — matches your brand
+                    color: '#3D5A40',       // sawah green - matches your brand
                     weight: 2,
                     opacity: 0.8,
                     fillColor: '#3D5A40',
                     fillOpacity: 0.06,     // very subtle fill, just a tint
-                    dashArray: '6, 4',     // dashed border — feels like a boundary, not a solid shape
+                    dashArray: '6, 4',     // dashed border - feels like a boundary, not a solid shape
                 }
             }).addTo(map);
 
             // On the combined /peta map (multiple markers), fit bounds to the
-            // boundary polygon instead of just the marker cluster — shows the
+            // boundary polygon instead of just the marker cluster - shows the
             // full village extent even if pins only cover part of it.
             if (markers.length === 0) {
                 map.fitBounds(boundary.getBounds(), { padding: [24, 24] });
             }
         })
         .catch(() => {
-            // Silently fail — boundary is decorative, not critical
+            // Silently fail - boundary is decorative, not critical
         });
 
     // Fit bounds if there are multiple markers (combined map use case)

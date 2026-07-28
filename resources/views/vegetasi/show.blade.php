@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $species->nama_lokal . ' — Vegetasi Malangjiwan')
+@section('title', $species->nama_lokal . ' - Vegetasi Malangjiwan')
 @section('meta_description', Str::limit(strip_tags($species->deskripsi ?? ''), 160))
 
 @section('content')

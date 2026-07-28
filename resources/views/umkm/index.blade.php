@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'UMKM Desa Malangjiwan — Produk dan Usaha Lokal')
+@section('title', 'UMKM Desa Malangjiwan - Produk dan Usaha Lokal')
 @section('meta_description', 'Temukan produk dan usaha lokal dari UMKM Desa Malangjiwan.')
 
 @section('content')
