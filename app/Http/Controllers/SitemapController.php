@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Umkm;
+use App\Models\VegetasiSpecies;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 
 class SitemapController extends Controller
 {
@@ -19,15 +21,21 @@ class SitemapController extends Controller
             ],
             [
                 'url' => route('wisata.index'),
-                'lastmod' => Wisata::published()->max('updated_at'),
+                'lastmod' => ($max = Wisata::published()->max('updated_at'))
+                    ? Carbon::parse($max)
+                    : null,
             ],
             [
                 'url' => route('umkm.index'),
-                'lastmod' => Umkm::published()->max('updated_at'),
+                'lastmod' => ($max = Umkm::published()->max('updated_at'))
+                    ? Carbon::parse($max)
+                    : null,
             ],
             [
                 'url' => route('post.index'),
-                'lastmod' => Post::published()->max('updated_at'),
+                'lastmod' => ($max = Post::published()->max('updated_at'))
+                    ? Carbon::parse($max)
+                    : null,
             ],
             [
                 'url' => route('galeri.index'),
@@ -39,6 +47,10 @@ class SitemapController extends Controller
             ],
             [
                 'url' => route('profil'),
+                'lastmod' => null,
+            ],
+            [
+                'url'     => route('vegetasi.index'),
                 'lastmod' => null,
             ],
         ];
@@ -55,10 +67,14 @@ class SitemapController extends Controller
             ->select(['slug', 'updated_at'])
             ->get();
 
+        $vegetasi = VegetasiSpecies::where('publish', true)
+            ->select(['slug', 'updated_at'])
+            ->get();
+
         return response()
             ->view(
                 'sitemap',
-                compact('staticPages', 'wisatas', 'umkms', 'posts')
+                compact('staticPages', 'wisatas', 'umkms', 'posts', 'vegetasi')
             )
             ->header('Content-Type', 'application/xml');
     }

@@ -29,4 +29,11 @@
         <lastmod>{{ $post->updated_at->toAtomString() }}</lastmod>
     </url>
 @endforeach
+
+@foreach ($vegetasi as $sp)
+    <url>
+        <loc>{{ route('vegetasi.show', $sp->slug) }}</loc>
+        <lastmod>{{ $sp->updated_at->toAtomString() }}</lastmod>
+    </url>
+@endforeach
 </urlset>
