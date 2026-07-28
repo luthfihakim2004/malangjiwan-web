@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -44,7 +45,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     protected static function booted(): void
     {
         static::created(function (User $user) {
-            $user->afterCommit(function () use ($user) {
+            DB::afterCommit(function () use ($user) {
                 if (! $user->hasVerifiedEmail()) {
                     $user->notify(new VerifyEmail());
                 }
