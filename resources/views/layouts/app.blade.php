@@ -177,53 +177,57 @@
         </nav>
 
         <!-- Mobile Menu -->
-<!-- Mobile Menu -->
-<div id="mobile-menu"
-     x-show="mobileOpen"
-     x-transition:enter="transition ease-out duration-200"
-     x-transition:enter-start="opacity-0 -translate-y-4"
-     x-transition:enter-end="opacity-100 translate-y-0"
-     class="md:hidden fixed left-0 right-0 top-16 bg-[var(--color-paper)] border-b border-[var(--color-bamboo)] shadow-xl z-50 overflow-y-auto"
-     style="max-height: calc(100vh - 4rem);">
+        <div id="mobile-menu"
+             x-show="mobileOpen"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="md:hidden fixed left-0 right-0 top-16 bg-[var(--color-paper)] border-b border-[var(--color-bamboo)] shadow-xl z-50 overflow-y-auto"
+             style="max-height: calc(100vh - 4rem);">
 
-    <div class="px-4 py-6 space-y-1">
-        <a href="{{ route('home') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Beranda
-        </a>
-        <a href="{{ route('post.index') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Berita
-        </a>
-        <a href="{{ route('wisata.index') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Wisata
-        </a>
-        <a href="{{ route('umkm.index') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            UMKM
-        </a>
-        <a href="{{ route('galeri.index') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Galeri
-        </a>
-        <a href="{{ route('peta') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Peta
-        </a>
-        <a href="{{ route('profil') }}"
-           @click="mobileOpen = false"
-           class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
-            Profil Desa
-        </a>
-    </div>
-</div>
+            <div class="px-4 py-6 space-y-1">
+                <a href="{{ route('home') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Beranda
+                </a>
+                <a href="{{ route('post.index') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Berita
+                </a>
+                <a href="{{ route('wisata.index') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Wisata
+                </a>
+                <a href="{{ route('umkm.index') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    UMKM
+                </a>
+                <a href="{{ route('vegetasi.index') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Vegetasi
+                </a>
+                <a href="{{ route('galeri.index') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Galeri
+                </a>
+                <a href="{{ route('peta') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Peta
+                </a>
+                <a href="{{ route('profil') }}"
+                   @click="mobileOpen = false"
+                   class="block py-4 px-4 text-base font-medium hover:bg-[var(--color-bamboo-dark)] rounded-xl transition-colors">
+                    Profil Desa
+                </a>
+            </div>
+        </div>
     </header>
 
     <main id="main-content">
