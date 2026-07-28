@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Notifications\Auth\VerifyEmail;
 use Filament\Panel;
+use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, AuthMustVerifyEmail;
 
     protected $fillable = [
         'name',
