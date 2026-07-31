@@ -31,4 +31,7 @@ Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index')
 Route::get('/vegetasi', [VegetasiController::class, 'index'])->name('vegetasi.index');
 Route::get('/vegetasi/{vegetationSpecies:slug}', [VegetasiController::class, 'show'])->name('vegetasi.show');
 
+Route::get('/aspirasi', fn () => view('aspirasi.index'))->name('aspirasi.index');
+Route::get('/aspirasi/cek', fn () => view('aspirasi.cek'))->name('aspirasi.cek');
+
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');

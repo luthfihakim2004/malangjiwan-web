@@ -316,5 +316,19 @@
         </div>
     @endif
 
+    <div class="mt-16 pt-12 border-t border-[var(--color-bamboo)]">
+        <x-section-heading
+            eyebrow="Sampaikan Aspirasi"
+            title="Kirim Feedback untuk {{ $wisata->nama }}"
+        />
+        <div class="max-w-2xl">
+            <livewire:submission-form
+                recipientType="wisata"
+                :recipientId="$wisata->id"
+                :recipientName="$wisata->nama"
+            />
+        </div>
+    </div>
+
 </div>
 @endsection
