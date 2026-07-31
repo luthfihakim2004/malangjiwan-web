@@ -36,8 +36,8 @@ class VegetasiSpeciesResource extends Resource
 
                     Forms\Components\TextInput::make('slug')
                         ->required()
-                        ->unique(ignoreRecord: true)
-                        ->helperText('Digunakan sebagai URL QR code: /vegetasi/{slug}'),
+                        ->prefix('malangjiwan.com/vegetasi/')
+                        ->unique(ignoreRecord: true),
 
                     Forms\Components\TextInput::make('nama_ilmiah')
                         ->label('Nama Ilmiah')
@@ -61,7 +61,8 @@ class VegetasiSpeciesResource extends Resource
 
                     Forms\Components\RichEditor::make('deskripsi')
                         ->label('Deskripsi')
-                        ->columnSpanFull(),
+                        ->columnSpanFull()
+                        ->extraInputAttributes(['style'=>'min-height: 300px']),
 
                     Forms\Components\Textarea::make('fun_fact')
                         ->label('Fun Fact')

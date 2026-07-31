@@ -43,7 +43,8 @@ class Profile extends Page implements HasForms
 
                 RichEditor::make('sejarah')
                     ->label('Sejarah Desa')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->extraInputAttributes(['style'=>'min-height: 500px']),
 
                 RichEditor::make('visi')
                     ->label('Visi'),

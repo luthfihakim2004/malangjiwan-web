@@ -19,7 +19,8 @@ return new class extends Migration
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
 
-            $table->string('jam_operasional')->nullable();
+            $table->time('jam_buka')->nullable();
+            $table->time('jam_tutup')->nullable();
 
             $table->boolean('featured')->default(false);
             $table->boolean('publish')->default(true);

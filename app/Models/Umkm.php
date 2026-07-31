@@ -16,7 +16,8 @@ class Umkm extends Model
         'alamat',
         'latitude',
         'longitude',
-        'jam_operasional',
+        'jam_buka',
+        'jam_tutup',
         'featured',
         'publish',
     ];
@@ -25,6 +26,8 @@ class Umkm extends Model
         'publish'   => 'boolean',
         'latitude'  => 'decimal:7',
         'longitude' => 'decimal:7',
+        'jam_buka'  => 'datetime:H:i',
+        'jam_tutup' => 'datetime:H:i',
     ];
 
     protected function coverImage(): Attribute

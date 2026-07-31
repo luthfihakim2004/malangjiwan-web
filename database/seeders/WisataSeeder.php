@@ -25,7 +25,8 @@ class WisataSeeder extends Seeder
                 'main_route_long'   => '110.5580482818675',
                 'alt_route_lat'     => '-7.6868234863105265',
                 'alt_route_long'    => '110.56299846664581',
-                'jam_operasional'   => '04.30 - 16.00',
+                'jam_buka'          => '04:30',
+                'jam_tutup'         => '16:00',
                 'featured'          => true,
                 'publish'           => true,
 
@@ -55,7 +56,8 @@ class WisataSeeder extends Seeder
                 'alamat'    => 'Jl. Jagalan, Bayanan, Malangjiwan, Kec. Kebonarum, Kabupaten Klaten, Jawa Tengah 57486',
                 'latitude'  => '-7.685205416682105',
                 'longitude' => '110.56414062560758',
-                'jam_operasional'   => '05.30 - 17.00',
+                'jam_buka'  => '05:30',
+                'jam_tutup' => '17:00',
                 'featured'  => true,
                 'publish'   => true,
             ]

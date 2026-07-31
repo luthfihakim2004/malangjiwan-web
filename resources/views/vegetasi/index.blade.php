@@ -13,7 +13,6 @@
         </h1>
         <p class="mt-2 text-[var(--color-ink)]/60 max-w-lg">
             Daftar spesies tumbuhan yang terdapat di wilayah Desa Malangjiwan.
-            Pindai QR code pada setiap pohon untuk melihat informasi lengkapnya.
         </p>
     </div>
 

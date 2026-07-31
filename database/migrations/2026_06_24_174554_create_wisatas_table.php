@@ -22,7 +22,8 @@ return new class extends Migration
             $table->decimal('alt_route_lat', 10, 7)->nullable();
             $table->decimal('alt_route_long', 10, 7)->nullable();
 
-            $table->string('jam_operasional')->nullable();
+            $table->time('jam_buka')->nullable();
+            $table->time('jam_tutup')->nullable();
 
             $table->boolean('featured')->default(false);
             $table->boolean('publish')->default(true);

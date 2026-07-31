@@ -20,7 +20,8 @@ class Wisata extends Model
         'main_route_long',
         'alt_route_lat',
         'alt_route_long',
-        'jam_operasional',
+        'jam_buka',
+        'jam_tutup',
         'featured',
         'publish',
     ];
@@ -29,6 +30,8 @@ class Wisata extends Model
         'publish'   => 'boolean',
         'latitude'  => 'decimal:7',
         'longitude' => 'decimal:7',
+        'jam_buka'  => 'datetime:H:i',
+        'jam_tutup' => 'datetime:H:i',
         'main_route_lat'  => 'decimal:7',
         'main_route_long' => 'decimal:7',
         'alt_route_lat'   => 'decimal:7',

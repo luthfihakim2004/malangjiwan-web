@@ -40,6 +40,7 @@ class WisataResource extends Resource
 
                         Forms\Components\TextInput::make('slug')
                             ->required()
+                            ->prefix('malangjiwan.com/wisata/')
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
 
@@ -107,9 +108,20 @@ class WisataResource extends Resource
                         Forms\Components\TextInput::make('longitude')
                             ->numeric(),
 
-                        Forms\Components\TextInput::make('jam_operasional')
-                            ->maxLength(255)
-                            ->placeholder('Contoh: 08.00 - 17.00'),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TimePicker::make('jam_buka')
+                                    ->label('Jam Buka')
+                                    ->seconds(false)
+                                    ->native(false)
+                                    ->displayFormat('H:i'),
+
+                                Forms\Components\TimePicker::make('jam_tutup')
+                                    ->label('Jam Tutup')
+                                    ->seconds(false)
+                                    ->native(false)
+                                    ->displayFormat('H:i'),
+                            ]),
 
                         Forms\Components\Repeater::make('contacts')
                             ->label('Kontak & Media Sosial')

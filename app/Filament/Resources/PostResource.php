@@ -36,6 +36,7 @@ class PostResource extends Resource
 
                         Forms\Components\TextInput::make('slug')
                             ->required()
+                            ->prefix('malangjiwan.com/post/')
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
 
@@ -60,6 +61,7 @@ class PostResource extends Resource
                             ->label('Isi Post')
                             ->required()
                             ->columnSpanFull()
+                            ->extraInputAttributes(['style'=>'min-height: 500px'])
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn ($state, Forms\Set $set) =>
                                 $set('excerpt', Str::limit(strip_tags($state), 150))
@@ -110,6 +112,7 @@ class PostResource extends Resource
 
                         Forms\Components\TextInput::make('excerpt')
                             ->label('Ringkasan')
+                            ->readOnly()
                             ->maxLength(255)
                             ->columnSpanFull(),
                     ])
