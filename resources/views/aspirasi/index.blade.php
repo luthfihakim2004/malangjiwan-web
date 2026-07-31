@@ -2,29 +2,6 @@
 @section('title', 'Aspirasi & Pengaduan — Malangjiwan')
 @section('meta_description', 'Sampaikan aspirasi, pengaduan, kritik, dan saran Anda kepada Pemerintah Desa Malangjiwan.')
 
-@push('scripts')
-<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
-
-<script>
-document.addEventListener('alpine:init', () => {
-    Alpine.data('submissionForm', () => ({
-        async submit() {
-            try {
-                const token = await grecaptcha.execute(
-                    '{{ config('services.recaptcha.site_key') }}',
-                    { action: 'submission' }
-                );
-
-                await this.$wire.submitWithToken(token);
-            } catch (e) {
-                console.error('reCAPTCHA error:', e);
-            }
-        }
-    }));
-});
-</script>
-@endpush
-
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
 
