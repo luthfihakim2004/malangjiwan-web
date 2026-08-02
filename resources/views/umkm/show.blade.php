@@ -179,7 +179,7 @@
             eyebrow="Sampaikan Aspirasi"
             title="Kirim Feedback untuk {{ $umkm->nama }}"
         />
-        <div class="max-w-2xl">
+        <div class="max-w-2xl mx-auto">
             <livewire:submission-form
                 recipientType="umkm"
                 :recipientId="$umkm->id"
