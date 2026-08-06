@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Aspirasi & Pengaduan — Malangjiwan')
+@section('title', 'Aspirasi & Pengaduan - Malangjiwan')
 @section('meta_description', 'Sampaikan aspirasi, pengaduan, kritik, dan saran Anda kepada Pemerintah Desa Malangjiwan.')
 
 @section('content')

@@ -15,6 +15,7 @@ class VegetasiSpecies extends Model
         'fun_fact',
         'image',
         'publish',
+        'wisata_id'
     ];
 
     protected $casts = [

@@ -271,10 +271,10 @@
                     <li><a href="{{ route('post.index') }}" class="hover:text-[var(--color-bata)]">Berita Desa</a></li>
                     <li><a href="{{ route('umkm.index') }}" class="hover:text-[var(--color-bata)]">Daftar UMKM</a></li>
                     <li><a href="{{ route('wisata.index') }}" class="hover:text-[var(--color-bata)]">Destinasi Wisata</a></li>
+                    <li><a href="{{ route('aspirasi.index') }}" class="hover:text-[var(--color-bata)]">Lapor & Aspirasi</a></li>
                 </ul>
             </div>
 
-            <!-- Dynamic Contacts -->
             {{-- Dynamic Contacts --}}
             <div>
                 <p class="eyebrow mb-3">Hubungi Kami</p>
