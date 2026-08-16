@@ -1,0 +1,22 @@
+name: Sync to Google Drive
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Upload to Google Drive
+        uses: adityassarkar/upload-to-google-drive@v2
+        with:
+          credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
+          folderId: "1yP7YMtMQm394_YP3pkuBCWEqhxnqSBaj"
+          targetPath: "./"
+          overwrite: true
+
