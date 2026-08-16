@@ -12,13 +12,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Upload to Google Drive
+      - name: Zip Repository Files
+        run: |
+          zip -r source-code-web.zip . -x "*.git*" "vendor/*" "node_modules/*"
+
+      # Step 2: Upload the clean zip archive directly to Google Drive
+      - name: Upload Zip to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
-          folderId: "1m0g_ireSV_8xDnlDXkarmPK9qSpjjyoz"
-          filename: "**/*"
-          useCompleteSourceFilenameAsName: "true"
-          mirrorDirectoryStructure: "true"
+          folderId: "1yP7YMtMQm394_YP3pkuBCWEqhxnqSBaj"
+          filename: "source-code-web.zip"
           overwrite: "true"
-
