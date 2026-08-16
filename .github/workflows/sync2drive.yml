@@ -17,6 +17,6 @@ jobs:
         with:
           credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
           folderId: "1yP7YMtMQm394_YP3pkuBCWEqhxnqSBaj"
-          targetPath: "./"
+          filename: "./*"
           overwrite: true
 
