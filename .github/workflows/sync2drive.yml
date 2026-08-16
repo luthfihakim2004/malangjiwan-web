@@ -15,6 +15,7 @@ jobs:
       - name: Zip Repository Files
         run: |
           zip -r source-code-web.zip . -x "*.git*" "vendor/*" "node_modules/*"
+          zip -ur source-code-web.zip .[^.]* -x "*.git*" "vendor/*" "node_modules/*"
 
       - name: Upload Zip to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
