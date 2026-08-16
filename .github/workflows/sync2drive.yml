@@ -17,6 +17,7 @@ jobs:
         with:
           credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
           folderId: "1m0g_ireSV_8xDnlDXkarmPK9qSpjjyoz"
-          source: "./"
-          supportsAllDrives: "true"
+          filename: "./"
+          mirrorDirectoryStructure: "true"
+          overwrite: "true"
 
